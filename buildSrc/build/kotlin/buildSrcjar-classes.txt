@@ -1,1 +1,0 @@
-D:\AndroidProject\laboratory\buildSrc\build\classes\kotlin\main\AppConfig.class;D:\AndroidProject\laboratory\buildSrc\build\classes\kotlin\main\AppDependencies.class;D:\AndroidProject\laboratory\buildSrc\build\classes\kotlin\main\AppDependenciesKt.class;D:\AndroidProject\laboratory\buildSrc\build\classes\kotlin\main\Versions.class
