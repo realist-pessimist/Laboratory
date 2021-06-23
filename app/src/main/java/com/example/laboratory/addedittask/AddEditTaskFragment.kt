@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.laboratory.ADD_EDIT_RESULT_OK
 import com.example.laboratory.EventObserver
 import com.example.laboratory.R
 import com.example.laboratory.databinding.FragmentAddTaskBinding
@@ -35,6 +36,7 @@ class AddEditTaskFragment : Fragment() {
         viewDataBinding = FragmentAddTaskBinding.bind(root).apply {
             this.vm = viewModel
         }
+        viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
         return viewDataBinding.root
     }
 
@@ -53,7 +55,7 @@ class AddEditTaskFragment : Fragment() {
     private fun setupNavigation() {
         viewModel.taskUpdatedEvent.observe(viewLifecycleOwner, EventObserver {
             val action = AddEditTaskFragmentDirections
-                .actionAddEditTaskFragmentToTasksFragment()
+                .actionAddEditTaskFragmentToTasksFragment(ADD_EDIT_RESULT_OK)
             findNavController().navigate(action)
         })
     }

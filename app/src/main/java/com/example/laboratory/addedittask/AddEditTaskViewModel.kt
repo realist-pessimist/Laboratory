@@ -14,11 +14,14 @@ import kotlinx.coroutines.launch
 /**
  * ViewModel for the Add/Edit screen.
  */
-class AddEditTaskViewModel(private val tasksRepository: TasksRepository) : ViewModel() {
-    // Two-way dataBinding, exposing MutableLiveData
+class AddEditTaskViewModel(
+    private val tasksRepository: TasksRepository
+) : ViewModel() {
+
+    // Two-way databinding, exposing MutableLiveData
     val title = MutableLiveData<String>()
 
-    // Two-way dataBinding, exposing MutableLiveData
+    // Two-way databinding, exposing MutableLiveData
     val description = MutableLiveData<String>()
 
     private val _dataLoading = MutableLiveData<Boolean>()

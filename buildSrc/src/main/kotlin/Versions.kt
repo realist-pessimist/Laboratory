@@ -32,7 +32,7 @@ object Versions {
     const val robolectric = "4.5.1"
     const val hamcrest = "1.3"
     const val junit = "4.13.2"
-    const val truth = "1.3.0"
+    const val truth = "1.1.3"
     const val espresso = "3.3.0"
     const val androidXTestCore = "1.3.0"
     const val androidXTestExtKotlinRunner = "1.1.2"

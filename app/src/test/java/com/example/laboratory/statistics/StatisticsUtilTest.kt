@@ -1,11 +1,12 @@
 package com.example.laboratory.statistics
 
+import androidx.test.filters.SmallTest
 import com.example.laboratory.data.Task
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.junit.Test
 
-
+@SmallTest
 class StatisticsUtilTest {
 
     @Test

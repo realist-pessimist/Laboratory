@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    id("androidx.navigation.safeargs")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -25,7 +25,7 @@ android {
     }
 
     testOptions {
-        unitTests.apply { 
+        unitTests {
             isIncludeAndroidResources = true
         }
     }
@@ -35,11 +35,14 @@ android {
             isMinifyEnabled = false
             isTestCoverageEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            testProguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguardTest-rules.pro")
         }
 
         getByName("release") {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            testProguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguardTest-rules.pro")
         }
     }
 
@@ -74,7 +77,9 @@ android {
         dataBinding = true
         viewBinding = true
     }
-
+    dataBinding {
+        isEnabledForTests = true
+    }
     packagingOptions {
         exclude("META-INF/AL2.0")
         exclude("META-INF/LGPL2.1")
