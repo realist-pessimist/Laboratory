@@ -32,15 +32,22 @@ android {
 
     signingConfigs {
         create("releaseConfig") {
-            storeFile = file("..\\keystore.jks")
+            storeFile = file("..\\keystore\\prod.keystore.jks")
             storePassword = "mogudi88"
             keyAlias = "key"
             keyPassword = "mogudi88"
+        }
+        create("debugConfig") {
+            storeFile = file("..\\keystore\\debug.keystore.jks")
+            storePassword = "123456"
+            keyAlias = "key"
+            keyPassword = "123456"
         }
     }
 
     buildTypes {
         getByName("debug") {
+            signingConfig = signingConfigs.getByName("debugConfig")
             isMinifyEnabled = false
             isTestCoverageEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
