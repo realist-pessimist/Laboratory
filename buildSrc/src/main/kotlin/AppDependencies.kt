@@ -14,54 +14,53 @@ object AppDependencies {
     private const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     private const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     private const val legacySupport = "androidx.legacy:legacy-support-v4:${Versions.androidXLegacySupport}"
+    private const val room = "androidx.room:room-runtime:${Versions.room}"
 
     // Architecture Components
-    private const val room = "androidx.room:room-runtime:${Versions.room}"
     private const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
     private const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.archLifecycle}"
     private const val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.archLifecycle}"
     private const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     private const val navigationUI = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+
     private const val testCore = "androidx.test:core:${Versions.androidXTestCore}"
     private const val fragment = "androidx.fragment:fragment:${Versions.fragment}"
 
-    //Compiler Components
-    private const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
-
     // Dependencies for local unit tests
     private const val junit = "junit:junit:${Versions.junit}"
-    private const val archTestCore = "androidx.arch.core:core-testing:${Versions.archTesting}"
-    private const val junitKtx = "androidx.test.ext:junit-ktx:${Versions.androidXTestExtKotlinRunner}"
-    private const val testKtxCore = "androidx.test:core-ktx:${Versions.androidXTestCore}"
-    private const val testCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
-    private const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
-
-    // Other unit test dependencies
     private const val hamcrest = "org.hamcrest:hamcrest-all:${Versions.hamcrest}"
-
-    // Core library
-    private const val androidTestCore = "androidx.test:core:1.3.0"
+    private const val testCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+    private const val testCoroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+    private const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+    private const val archTestCore = "androidx.arch.core:core-testing:${Versions.archTesting}"
+    private const val navigationTesting = "androidx.navigation:navigation-testing:${Versions.navigation}"
+    private const val junitKtx = "androidx.test.ext:junit-ktx:${Versions.androidXTestExtKotlinRunner}"
+    private const val testCoreKtx = "androidx.test:core-ktx:${Versions.androidXTestCore}"
+    private const val truth = "com.google.truth:truth:${Versions.truth}"
 
     // AndroidJUnitRunner and JUnit Rules
-    private const val androidTestRunner = "androidx.test:runner:1.3.0"
-    private const val androidTestRules = "androidx.test:rules:1.3.0"
-
-    // Assertions
-    private const val androidJunit = "androidx.test.ext:junit:${Versions.androidXTestExtKotlinRunner}"
-    private const val truthX = "androidx.test.ext:truth:${Versions.truth}"
-    private const val truth = "com.google.truth:truth:1.0.1"
+    private const val androidTestRules = "androidx.test:rules:${Versions.rules}"
+    // AndroidX Test - Instrumented testing
+    private const val robolectricAnnotation = "org.robolectric:annotations:${Versions.robolectric}"
+    private const val roomTesting = "androidx.room:room-testing:${Versions.room}"
 
     // Espresso dependencies
     private const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    private const val espressoIntents = "androidx.test.espresso:espresso-intents:${Versions.espresso}"
+    private const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
+    private const val espressoIdlingConcurrent = "androidx.test.espresso.idling:idling-concurrent:${Versions.espresso}"
+    private const val espressoIdlingResource = "androidx.test.espresso:espresso-idling-resource:${Versions.espresso}"
 
     // Debug dependencies
     private const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragment}"
+
+    //Compiler Components
+    private const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
 
     val appLibraries = arrayListOf<String>().apply {
         add(kotlinStdLib)
         add(fragment)
         add(fragmentKtx)
-        add(testCore)
         add(appcompat)
         add(cardView)
         add(material)
@@ -76,26 +75,46 @@ object AppDependencies {
         add(lifecycleLiveData)
         add(navigationFragment)
         add(navigationUI)
+        // Once https://issuetracker.google.com/127986458 is fixed this can be testImplementation
+        add(testCore)
+        add(espressoIdlingResource)
     }
 
     val testLibraries = arrayListOf<String>().apply {
         add(junit)
-        add(archTestCore)
         add(junitKtx)
-        add(testKtxCore)
-        add(robolectric)
         add(hamcrest)
+        add(archTestCore)
         add(testCoroutines)
+        add(testCoroutinesAndroid)
+        add(robolectric)
+        add(testCoreKtx)
+        add(espresso)
+        add(espressoContrib)
+        add(espressoIntents)
+        add(truth)
+        add(androidTestRules)
     }
 
     val androidTestLibraries = arrayListOf<String>().apply {
-        add(androidTestCore)
-        add(androidTestRunner)
+        add(junit)
+        add(testCoroutines)
+        add(testCoreKtx)
+        add(junitKtx)
         add(androidTestRules)
-        add(androidJunit)
-        add(truthX)
-        add(truth)
+        add(archTestCore)
+        add(navigationTesting)
         add(espresso)
+        add(espressoContrib)
+        add(espressoIntents)
+        add(espressoIdlingConcurrent)
+        add(robolectricAnnotation)
+        add(roomTesting)
+        add(annotation)
+        add(legacySupport)
+        add(recyclerView)
+        add(appcompat)
+        add(material)
     }
 
     val compilerLibraries = arrayListOf<String>().apply{

@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleObserver
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.laboratory.DELETE_RESULT_OK
 import com.example.laboratory.EventObserver
 import com.example.laboratory.R
 import com.example.laboratory.databinding.FragmentTaskDetailBinding
-import com.example.laboratory.tasks.TasksViewModel
 import com.example.laboratory.util.getViewModelFactory
 import com.example.laboratory.util.setupRefreshLayout
 import com.example.laboratory.util.setupSnackbar
@@ -18,7 +19,7 @@ import com.google.android.material.snackbar.Snackbar
 /**
  * Main UI for the task detail screen.
  */
-class TaskDetailFragment : Fragment() {
+class TaskDetailFragment : Fragment(), LifecycleObserver {
     private lateinit var viewDataBinding: FragmentTaskDetailBinding
 
     private val args: TaskDetailFragmentArgs by navArgs()
@@ -36,7 +37,7 @@ class TaskDetailFragment : Fragment() {
     private fun setupNavigation() {
         viewModel.deleteTaskEvent.observe(viewLifecycleOwner, EventObserver {
             val action = TaskDetailFragmentDirections
-                .actionTaskDetailFragmentToTasksFragment()
+                .actionTaskDetailFragmentToTasksFragment(DELETE_RESULT_OK)
             findNavController().navigate(action)
         })
         viewModel.editTaskEvent.observe(viewLifecycleOwner, EventObserver {

@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    id("androidx.navigation.safeargs")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -25,21 +25,41 @@ android {
     }
 
     testOptions {
-        unitTests.apply { 
+        unitTests {
             isIncludeAndroidResources = true
+        }
+    }
+
+    signingConfigs {
+        create("releaseConfig") {
+            storeFile = file("..\\keystore\\prod.keystore.jks")
+            storePassword = "mogudi88"
+            keyAlias = "key"
+            keyPassword = "mogudi88"
+        }
+        create("debugConfig") {
+            storeFile = file("..\\keystore\\debug.keystore.jks")
+            storePassword = "123456"
+            keyAlias = "key"
+            keyPassword = "123456"
         }
     }
 
     buildTypes {
         getByName("debug") {
+            signingConfig = signingConfigs.getByName("debugConfig")
             isMinifyEnabled = false
             isTestCoverageEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            testProguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguardTest-rules.pro")
         }
 
         getByName("release") {
+            signingConfig = signingConfigs.getByName("releaseConfig")
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            testProguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguardTest-rules.pro")
         }
     }
 
@@ -74,7 +94,9 @@ android {
         dataBinding = true
         viewBinding = true
     }
-
+    dataBinding {
+        isEnabledForTests = true
+    }
     packagingOptions {
         exclude("META-INF/AL2.0")
         exclude("META-INF/LGPL2.1")

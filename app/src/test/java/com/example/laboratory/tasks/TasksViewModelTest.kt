@@ -1,6 +1,8 @@
 package com.example.laboratory.tasks
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.SavedStateHandle
+import androidx.test.filters.SmallTest
 import com.example.laboratory.data.Task
 import com.example.laboratory.data.source.FakeTestRepository
 import org.hamcrest.MatcherAssert.assertThat
@@ -9,6 +11,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+@SmallTest
 class TasksViewModelTest {
 
     @get:Rule
@@ -26,7 +29,7 @@ class TasksViewModelTest {
         val task3 = Task("Title3", "Description3", true)
         tasksRepository.addTasks(task1, task2, task3)
 
-        tasksViewModel = TasksViewModel(tasksRepository)
+        tasksViewModel = TasksViewModel(tasksRepository, SavedStateHandle())
     }
 
 
